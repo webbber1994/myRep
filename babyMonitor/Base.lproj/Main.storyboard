@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="babyMonitor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,89 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRM-xx-BKh">
+                                <rect key="frame" x="20" y="20" width="210" height="199"/>
+                                <color key="backgroundColor" red="0.85784541560000005" green="0.90525440729999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button" image="camera.png"/>
+                                <connections>
+                                    <segue destination="8zH-di-CCd" kind="show" id="yLP-fm-RJL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTl-Ec-Vmi">
+                                <rect key="frame" x="20" y="237" width="185" height="199"/>
+                                <color key="backgroundColor" red="1" green="0.97887568815240467" blue="0.90722035916945076" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button" image="monitor.png"/>
+                                <connections>
+                                    <segue destination="tUM-1O-9Pq" kind="show" id="LeK-Jd-LTl"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="445" y="458"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="wyV-lo-TEz">
+            <objects>
+                <viewController id="8zH-di-CCd" customClass="CameraViewController" customModule="babyMonitor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2EN-FN-3TR"/>
+                        <viewControllerLayoutGuide type="bottom" id="sG5-4F-zeR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z6G-tG-uHe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLs-gV-4ro">
+                                <rect key="frame" x="20" y="20" width="38" height="34"/>
+                                <state key="normal" title="Button" image="changeCamera.png"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cameraBtn" destination="bLs-gV-4ro" id="nGl-og-39k"/>
+                        <outlet property="cameraView" destination="z6G-tG-uHe" id="tH0-Hx-Axa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2rK-cw-cK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="445" y="1282"/>
+        </scene>
+        <!--Monitor View Controller-->
+        <scene sceneID="qMt-qp-1cz">
+            <objects>
+                <viewController id="tUM-1O-9Pq" customClass="MonitorViewController" customModule="babyMonitor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N7g-pp-wyi"/>
+                        <viewControllerLayoutGuide type="bottom" id="e0b-cQ-tjA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ToP-Ld-thS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qij-6y-ww8">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imgVw" destination="qij-6y-ww8" id="Zsf-1r-ZtY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eew-dY-UOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1162" y="458"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera.png" width="256" height="256"/>
+        <image name="changeCamera.png" width="204" height="204"/>
+        <image name="monitor.png" width="128" height="128"/>
+    </resources>
 </document>

@@ -1,0 +1,6 @@
+framework module Pods_babyMonitor {
+  umbrella header "Pods-babyMonitor-umbrella.h"
+
+  export *
+  module * { export * }
+}
