@@ -14,12 +14,15 @@
 		8D24A2EA1CB6528100E81750 /* babyMonitor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D24A2E81CB6528100E81750 /* babyMonitor.xcdatamodeld */; };
 		8D24A2EC1CB6528100E81750 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D24A2EB1CB6528100E81750 /* Assets.xcassets */; };
 		8D24A2EF1CB6528100E81750 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D24A2ED1CB6528100E81750 /* LaunchScreen.storyboard */; };
-		8D24A2F71CB6555200E81750 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D24A2F61CB6555200E81750 /* camera.png */; };
 		8D24A2F91CB6555D00E81750 /* monitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D24A2F81CB6555D00E81750 /* monitor.png */; };
 		8D24A2FB1CB6556A00E81750 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D24A2FA1CB6556A00E81750 /* Const.swift */; };
 		8D24A2FE1CB6586300E81750 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D24A2FC1CB6586300E81750 /* CameraViewController.swift */; };
 		8D24A2FF1CB6586300E81750 /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D24A2FD1CB6586300E81750 /* MonitorViewController.swift */; };
-		8D24A3011CB68A2700E81750 /* changeCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D24A3001CB68A2700E81750 /* changeCamera.png */; };
+		8D59CCC51CD8E95D0090B3DD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D59CCC41CD8E95D0090B3DD /* SettingViewController.swift */; };
+		8DAEBFE31CD4DA2200F1AE69 /* camera_26.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DAEBFE21CD4DA2200F1AE69 /* camera_26.png */; };
+		8DAEBFE51CD4E35C00F1AE69 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DAEBFE41CD4E35C00F1AE69 /* setting.png */; };
+		8DCBEBFE1CCCB74500B74BA3 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DCBEBFD1CCCB74500B74BA3 /* Media.xcassets */; };
+		8DCE7B261D0B0E35006CEE96 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCE7B251D0B0E35006CEE96 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,13 +36,16 @@
 		8D24A2EB1CB6528100E81750 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D24A2EE1CB6528100E81750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D24A2F01CB6528100E81750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D24A2F61CB6555200E81750 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		8D24A2F81CB6555D00E81750 /* monitor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monitor.png; sourceTree = "<group>"; };
 		8D24A2FA1CB6556A00E81750 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		8D24A2FC1CB6586300E81750 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		8D24A2FD1CB6586300E81750 /* MonitorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitorViewController.swift; sourceTree = "<group>"; };
-		8D24A3001CB68A2700E81750 /* changeCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = changeCamera.png; sourceTree = "<group>"; };
 		8D24A3021CB68F8500E81750 /* babyMonitor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "babyMonitor-Bridging-Header.h"; sourceTree = "<group>"; };
+		8D59CCC41CD8E95D0090B3DD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8DAEBFE21CD4DA2200F1AE69 /* camera_26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_26.png; sourceTree = "<group>"; };
+		8DAEBFE41CD4E35C00F1AE69 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		8DCBEBFD1CCCB74500B74BA3 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		8DCE7B251D0B0E35006CEE96 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BA0C978198D6F23DE73963F2 /* Pods_babyMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_babyMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -48,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DCE7B261D0B0E35006CEE96 /* StoreKit.framework in Frameworks */,
 				8C8C4D87D964C0213359444F /* Pods_babyMonitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,6 +65,7 @@
 		0A8D39F0403C226621110B16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8DCE7B251D0B0E35006CEE96 /* StoreKit.framework */,
 				BA0C978198D6F23DE73963F2 /* Pods_babyMonitor.framework */,
 			);
 			name = Frameworks;
@@ -66,6 +74,7 @@
 		8D24A2D51CB6528100E81750 = {
 			isa = PBXGroup;
 			children = (
+				8DCBEBFD1CCCB74500B74BA3 /* Media.xcassets */,
 				8D24A2E01CB6528100E81750 /* babyMonitor */,
 				8D24A2DF1CB6528100E81750 /* Products */,
 				B7F9249F427C1F4CC7200682 /* Pods */,
@@ -84,13 +93,14 @@
 		8D24A2E01CB6528100E81750 /* babyMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				8D24A2F61CB6555200E81750 /* camera.png */,
 				8D24A2F81CB6555D00E81750 /* monitor.png */,
-				8D24A3001CB68A2700E81750 /* changeCamera.png */,
+				8DAEBFE21CD4DA2200F1AE69 /* camera_26.png */,
+				8DAEBFE41CD4E35C00F1AE69 /* setting.png */,
 				8D24A2FA1CB6556A00E81750 /* Const.swift */,
 				8D24A2E11CB6528100E81750 /* AppDelegate.swift */,
 				8D24A2FC1CB6586300E81750 /* CameraViewController.swift */,
 				8D24A2FD1CB6586300E81750 /* MonitorViewController.swift */,
+				8D59CCC41CD8E95D0090B3DD /* SettingViewController.swift */,
 				8D24A2E31CB6528100E81750 /* ViewController.swift */,
 				8D24A2E51CB6528100E81750 /* Main.storyboard */,
 				8D24A2EB1CB6528100E81750 /* Assets.xcassets */,
@@ -141,12 +151,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = dede;
 				TargetAttributes = {
 					8D24A2DD1CB6528100E81750 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = Q83MD2CS8E;
+						DevelopmentTeam = 8RYQBEM4EQ;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -175,9 +187,10 @@
 			files = (
 				8D24A2EF1CB6528100E81750 /* LaunchScreen.storyboard in Resources */,
 				8D24A2EC1CB6528100E81750 /* Assets.xcassets in Resources */,
-				8D24A3011CB68A2700E81750 /* changeCamera.png in Resources */,
-				8D24A2F71CB6555200E81750 /* camera.png in Resources */,
+				8DCBEBFE1CCCB74500B74BA3 /* Media.xcassets in Resources */,
+				8DAEBFE51CD4E35C00F1AE69 /* setting.png in Resources */,
 				8D24A2E71CB6528100E81750 /* Main.storyboard in Resources */,
+				8DAEBFE31CD4DA2200F1AE69 /* camera_26.png in Resources */,
 				8D24A2F91CB6555D00E81750 /* monitor.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +255,7 @@
 				8D24A2FE1CB6586300E81750 /* CameraViewController.swift in Sources */,
 				8D24A2FB1CB6556A00E81750 /* Const.swift in Sources */,
 				8D24A2E21CB6528100E81750 /* AppDelegate.swift in Sources */,
+				8D59CCC51CD8E95D0090B3DD /* SettingViewController.swift in Sources */,
 				8D24A2EA1CB6528100E81750 /* babyMonitor.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,8 +296,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -305,7 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -327,8 +343,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -344,9 +362,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -356,15 +375,21 @@
 			baseConfigurationReference = 8B84D8B59F013B3A9EECFD57 /* Pods-babyMonitor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8RYQBEM4EQ;
 				INFOPLIST_FILE = babyMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.babyMonitor2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.babyMonitor.dede;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "babyMonitor/babyMonitor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -373,14 +398,20 @@
 			baseConfigurationReference = 5E1587CD7C12AE1C73B405B5 /* Pods-babyMonitor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8RYQBEM4EQ;
 				INFOPLIST_FILE = babyMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.babyMonitor2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.babyMonitor.dede;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "babyMonitor/babyMonitor-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
