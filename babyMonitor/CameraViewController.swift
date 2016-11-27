@@ -3,7 +3,7 @@ import AVFoundation
 import CocoaAsyncSocket
 
 
-class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDelegate,GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate  ,NADViewDelegate{
+class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDelegate,GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
 
     @IBOutlet weak var passcodeLabel: UILabel!
     @IBOutlet weak var cameraView: UIView!
@@ -20,7 +20,6 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
     var isRunning: Bool = false
     var cnt: Int = 0
     var previewLayer:AVCaptureVideoPreviewLayer?
-    fileprivate var nadViewLocal: NADView!
 
     override func willMove(toParentViewController parent: UIViewController?) {
         super.willMove(toParentViewController: parent)
@@ -42,9 +41,6 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
 
     }
 
-    func nadViewDidFinishLoad(_ adView: NADView!) {
-        self.view.addSubview(adView) // ロードが完了してから NADView を表示する場合
-    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -83,7 +79,7 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
                 AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: {(granted: Bool) -> Void in
                     if !granted {
                         self.setupResult = AVCamSetupResult.cameraNotAuthorized
-                    }
+                    }	
                     self.sessionQueue!.resume()
                 })
             default:
@@ -107,13 +103,13 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
                     }
 
                     // Change this value
-                    let videoDevice: AVCaptureDevice = CameraViewController.deviceWithMediaType(AVMediaTypeVideo, preferringPosition: .back)
+                    let videoDevice: AVCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType:AVMediaTypeVideo)
                     // Get the active capture device
-                    try videoDevice.lockForConfiguration()
+                    /**try videoDevice.lockForConfiguration()
                     videoDevice.activeVideoMinFrameDuration = CMTimeMake(1, 2)
                     videoDevice.activeVideoMaxFrameDuration = CMTimeMake(1, 2)
                     videoDevice.unlockForConfiguration()
-
+                     */
                     let videoDeviceInput: AVCaptureDeviceInput = try AVCaptureDeviceInput(device: videoDevice) as AVCaptureDeviceInput
 
                     self.session?.beginConfiguration()
@@ -152,63 +148,7 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
         }catch{
             NSLog("ERROR viewDidLoad")
         }
-        //passcode
-        passcodeLabel.backgroundColor = UIColor.clear;
-        if(Setting.usePassword){
-            Setting.setUsePassword(self.genPwd())
-            passcodeLabel.text = "Password:" + Setting.password
-        }else{
-            passcodeLabel.text = "";
-        }
-
-        self.cameraView.addSubview(passcodeLabel);
-        self.cameraView.bringSubview(toFront: passcodeLabel);
-        // NADViewクラスを生成
-        nadViewLocal = NADView(frame: CGRect(x: (UIScreen.main.bounds.size.width - 320)/2, y: UIScreen.main.bounds.size.height - 50, width: UIScreen.main.bounds.size.width, height: 50))
-
-        // 広告枠のapikey/spotidを設定(必須)
-        nadViewLocal.setNendID("227c452f8df541d30036a2dfa2168823de732476",
-                               spotID: "609226")
-        // nendSDKログ出力の設定(任意)
-        nadViewLocal.isOutputLog = false
-        // delegateを受けるオブジェクトを指定(必須)
-        nadViewLocal.delegate = self // 読み込み開始(必須)
-        nadViewLocal.load()
-
-        //
     }
-
-    func genPwd() -> String {
-        // ランダムの４桁数字
-        var random = arc4random_uniform(10)
-        var str = random.description
-
-         random = arc4random_uniform(10)
-         str = str + random.description
-
-        random = arc4random_uniform(10)
-        str = str + random.description
-        random = arc4random_uniform(10)
-        str = str + random.description
-
-        return str
-
-    }
-
-    class func deviceWithMediaType(_ mediaType: String, preferringPosition position: AVCaptureDevicePosition) -> AVCaptureDevice {
-        let devices = AVCaptureDevice.devices(withMediaType: mediaType)
-        var captureDevice: AVCaptureDevice = devices!.first as! AVCaptureDevice
-
-        for device in devices!{
-            let device = device as! AVCaptureDevice
-            if device.position == position {
-                captureDevice = device
-                break
-            }
-        }
-        return captureDevice
-    }
-
 
     // Return IP address of WiFi interface (en0) as a String, or `nil`
     func getWiFiAddress() -> String? {
@@ -225,7 +165,7 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
 
             // Check for IPv4 or IPv6 interface:
             let addrFamily = interface.ifa_addr.pointee.sa_family
-            if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
+            if addrFamily == UInt8(AF_INET) {
 
                 // Check interface name:
                 let name = String(cString: interface.ifa_name)
@@ -276,7 +216,7 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
         return resData
     }
 
-    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: AnyObject) {
+    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any) {
         let msg: String = self.getWiFiAddress()!
         let data2: Data = msg.data(using: String.Encoding.utf8)!
         self.udpSocket!.send(data2, toAddress: address, withTimeout: -1, tag: 0)
@@ -305,14 +245,6 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
 
     func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
         sync(self.connectedSockets){
-            let str111 = "";
-            if(Setting.usePassword){
-                //str111 = "PWD";
-            }else{
-                //str111 = "NPW";
-            }
-            let needPwd :Data = str111.data(using: String.Encoding.utf8)!
-            newSocket.write(needPwd, withTimeout: -1, tag: Const.NEED_PWD);
             self.connectedSockets.add(newSocket)
             NSLog("socket accepted %@: %hu", newSocket.connectedHost, newSocket.connectedPort)
 
@@ -330,7 +262,7 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
         return 0.0
     }
     
-    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: NSError) {
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error) {
         if sock != self.listenSocket {
             sync(self.connectedSockets){
                 self.connectedSockets.remove(sock)
