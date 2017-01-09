@@ -2,7 +2,7 @@ import UIKit
 import AVFoundation
 import CocoaAsyncSocket
 
-class MonitorViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDelegate,GCDAsyncSocketDelegate,GCDAsyncUdpSocketDelegate{
+class MonitorViewController: UIViewController, AVAudioPlayerDelegate,GCDAsyncSocketDelegate,GCDAsyncUdpSocketDelegate{
 
     @IBOutlet weak var imgVw: UIImageView!
     var udpSocket:GCDAsyncUdpSocket?;
@@ -10,6 +10,9 @@ class MonitorViewController: UIViewController,AVCaptureVideoDataOutputSampleBuff
     var socketQueue:DispatchQueue?;
     var connectedSockets:NSMutableArray? = [];
     var isConnected:Bool?;
+    var currentType:Int?;
+
+    var audioPlayer:AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +60,7 @@ class MonitorViewController: UIViewController,AVCaptureVideoDataOutputSampleBuff
         do{
             let msg: String = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as! String
             try self.asyncSocket?.connect(toHost: msg, onPort: 8080)
-            self.asyncSocket?.readData(toLength: 8, withTimeout: -1, tag: Const.LEN_MSG)
+            self.asyncSocket?.readData(toLength: 2, withTimeout: -1, tag: Const.IMG_TYP)
             self.isConnected = true
         }catch{
             print("error udp didReceiveData")
@@ -65,7 +68,13 @@ class MonitorViewController: UIViewController,AVCaptureVideoDataOutputSampleBuff
     }
 
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        if (tag == Const.LEN_MSG) {
+        if (tag == Const.IMG_TYP){
+            var type: Int = 0
+            (data as NSData).getBytes(&type, length: 2)
+            currentType = type
+            self.asyncSocket?.readData(toLength: 8, withTimeout: -1, tag: Const.LEN_MSG)
+        }
+        else if (tag == Const.LEN_MSG) {
             var length: Int = 0;
             (data as NSData).getBytes(&length, length: MemoryLayout<Int>.size)
             self.asyncSocket?.readData(toLength: UInt(length), withTimeout: -1, tag: Const.IMG_MSG)
@@ -74,7 +83,7 @@ class MonitorViewController: UIViewController,AVCaptureVideoDataOutputSampleBuff
             // Process the response
             self.recieveVideoFromData2(datain: data)
             // Start reading the next response
-            self.asyncSocket?.readData(toLength: 8, withTimeout: -1, tag: Const.LEN_MSG)
+            self.asyncSocket?.readData(toLength: 2, withTimeout: -1, tag: Const.IMG_TYP)
         }
         else{
             print("tag error")

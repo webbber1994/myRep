@@ -9,8 +9,7 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
     @IBOutlet weak var cameraView: UIView!
     var session:AVCaptureSession?
     var sessionQueue: DispatchQueue?
-    var videoDataOutputQueue: DispatchQueue?
-    var videoDeviceInput:AVCaptureDeviceInput?
+    var recordingQueue: DispatchQueue?
     var setupResult: AVCamSetupResult?
     var udpSocket:GCDAsyncUdpSocket?
     var listenSocket:GCDAsyncSocket?
@@ -69,8 +68,8 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
             self.session = AVCaptureSession()
             self.session?.sessionPreset = AVCaptureSessionPresetMedium
             self.sessionQueue = DispatchQueue(label: "session queue", attributes: [])
-            switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
 
+            switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
             case AVAuthorizationStatus.authorized:
                 self.setupResult = AVCamSetupResult.success
                 break
@@ -79,8 +78,11 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
                 AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: {(granted: Bool) -> Void in
                     if !granted {
                         self.setupResult = AVCamSetupResult.cameraNotAuthorized
-                    }	
+                    }else{
+                        self.setupResult = AVCamSetupResult.success
+                    }
                     self.sessionQueue!.resume()
+
                 })
             default:
                 self.setupResult = AVCamSetupResult.cameraNotAuthorized
@@ -99,45 +101,31 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
             (self.sessionQueue)!.async {
                 do{
                     if self.setupResult !=  AVCamSetupResult.success {
+                        DispatchQueue.main.async {
+                            //UIAlertView
+                            let alert:UIAlertController = UIAlertController(title:"エラー",
+                                                                            message: "カメラにアクセスできません。",
+                                                                            preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
                         return
                     }
 
                     // Change this value
                     let videoDevice: AVCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType:AVMediaTypeVideo)
-                    // Get the active capture device
-                    /**try videoDevice.lockForConfiguration()
-                    videoDevice.activeVideoMinFrameDuration = CMTimeMake(1, 2)
-                    videoDevice.activeVideoMaxFrameDuration = CMTimeMake(1, 2)
-                    videoDevice.unlockForConfiguration()
-                     */
+
                     let videoDeviceInput: AVCaptureDeviceInput = try AVCaptureDeviceInput(device: videoDevice) as AVCaptureDeviceInput
 
                     self.session?.beginConfiguration()
 
-                    if self.session!.canAddInput(videoDeviceInput) {
-                        self.session!.addInput(videoDeviceInput)
-                        self.videoDeviceInput = videoDeviceInput
+                    self.session!.addInput(videoDeviceInput)
 
-                    }
-                    else {
-                        NSLog("Could not add video device input to the session")
-                        self.setupResult = AVCamSetupResult.sessionConfigurationFailed
-                    }
-
-                    self.videoDataOutputQueue = DispatchQueue(label: "videoDataOutputQueue", attributes: [])
+                    self.recordingQueue = DispatchQueue(label: "recordingQueue", attributes: [])
                     let videoDataOutput: AVCaptureVideoDataOutput = AVCaptureVideoDataOutput()
                     videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as AnyHashable : Int(kCVPixelFormatType_32BGRA)]
-                    videoDataOutput.setSampleBufferDelegate(self, queue: self.videoDataOutputQueue)
-                    if self.session!.canAddOutput(videoDataOutput) {
-                        self.session!.addOutput(videoDataOutput)
-                        let connection: AVCaptureConnection = videoDataOutput.connection(withMediaType: AVMediaTypeVideo)
-                        if connection.isVideoStabilizationSupported {
-                            connection.preferredVideoStabilizationMode = .auto
-                        }
-                    }
-                    else {
-                        self.setupResult = AVCamSetupResult.sessionConfigurationFailed
-                    }
+                    videoDataOutput.setSampleBufferDelegate(self, queue: self.recordingQueue)
+                    self.session!.addOutput(videoDataOutput)
                     self.session!.commitConfiguration()
                     self.session!.startRunning()
 
@@ -149,6 +137,8 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
             NSLog("ERROR viewDidLoad")
         }
     }
+
+
 
     // Return IP address of WiFi interface (en0) as a String, or `nil`
     func getWiFiAddress() -> String? {
@@ -216,6 +206,13 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
         return resData
     }
 
+    func convertArr<T>(count: Int, data: UnsafePointer<T>) -> [T] {
+
+        let buffer = UnsafeBufferPointer(start: data, count: count)
+        return Array(buffer)
+    }
+
+
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any) {
         let msg: String = self.getWiFiAddress()!
         let data2: Data = msg.data(using: String.Encoding.utf8)!
@@ -230,11 +227,15 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
         if (self.cnt % 3 == 0) {
             let rawData = self.imageToBuffer(sampleBuffer)
             var len: Int = rawData.count
+            var video: NSInteger = 1
+            let videoData = NSData(bytes: &video, length: 2)
+
             let dataLen: NSData = NSData(bytes:&len, length: 8)
             sync(self.connectedSockets){
                 for sockTmp in self.connectedSockets{
                     let socketConn:GCDAsyncSocket = sockTmp as! GCDAsyncSocket
                     self.socketQueue!.async{
+                        socketConn.write(videoData as Data!, withTimeout: -1, tag: Const.IMG_TYP)
                         socketConn.write(dataLen as Data!, withTimeout: -1, tag: Const.LEN_MSG)
                         socketConn.write(rawData, withTimeout: -1, tag: Const.IMG_MSG)
                     }

@@ -1,14 +1,19 @@
 import UIKit
 import CoreData
+import StoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate , PurchaseManagerDelegate{
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // デリゲート設定
+        PuchaseManager.sharedManager().delegate = self
+
+        // オブザーバー登録
+        SKPaymentQueue.default().add(PuchaseManager.sharedManager())
         return true
     }
 
@@ -31,8 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
+        SKPaymentQueue.default().remove(PuchaseManager.sharedManager())
         self.saveContext()
     }
 
