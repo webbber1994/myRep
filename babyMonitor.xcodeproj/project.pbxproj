@@ -18,8 +18,8 @@
 		8D24A2FB1CB6556A00E81750 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D24A2FA1CB6556A00E81750 /* Const.swift */; };
 		8D24A2FE1CB6586300E81750 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D24A2FC1CB6586300E81750 /* CameraViewController.swift */; };
 		8D24A2FF1CB6586300E81750 /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D24A2FD1CB6586300E81750 /* MonitorViewController.swift */; };
+		8D272E291DFE812C0084E333 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D272E271DFE7EED0084E333 /* PurchaseManager.swift */; };
 		8DAEBFE31CD4DA2200F1AE69 /* camera_26.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DAEBFE21CD4DA2200F1AE69 /* camera_26.png */; };
-		8DAEBFE51CD4E35C00F1AE69 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DAEBFE41CD4E35C00F1AE69 /* setting.png */; };
 		8DCBEBFE1CCCB74500B74BA3 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DCBEBFD1CCCB74500B74BA3 /* Media.xcassets */; };
 		8DCE7B261D0B0E35006CEE96 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCE7B251D0B0E35006CEE96 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
@@ -40,8 +40,8 @@
 		8D24A2FC1CB6586300E81750 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		8D24A2FD1CB6586300E81750 /* MonitorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitorViewController.swift; sourceTree = "<group>"; };
 		8D24A3021CB68F8500E81750 /* babyMonitor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "babyMonitor-Bridging-Header.h"; sourceTree = "<group>"; };
+		8D272E271DFE7EED0084E333 /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PurchaseManager.swift; path = ../PurchaseManager.swift; sourceTree = "<group>"; };
 		8DAEBFE21CD4DA2200F1AE69 /* camera_26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_26.png; sourceTree = "<group>"; };
-		8DAEBFE41CD4E35C00F1AE69 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		8DCBEBFD1CCCB74500B74BA3 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		8DCE7B251D0B0E35006CEE96 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B7D45E130188ED8612C5DB1C /* Pods_babyMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_babyMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,11 +102,11 @@
 			children = (
 				8D24A2F81CB6555D00E81750 /* monitor.png */,
 				8DAEBFE21CD4DA2200F1AE69 /* camera_26.png */,
-				8DAEBFE41CD4E35C00F1AE69 /* setting.png */,
 				8D24A2FA1CB6556A00E81750 /* Const.swift */,
 				8D24A2E11CB6528100E81750 /* AppDelegate.swift */,
 				8D24A2FC1CB6586300E81750 /* CameraViewController.swift */,
 				8D24A2FD1CB6586300E81750 /* MonitorViewController.swift */,
+				8D272E271DFE7EED0084E333 /* PurchaseManager.swift */,
 				8D24A2E31CB6528100E81750 /* ViewController.swift */,
 				8D24A2E51CB6528100E81750 /* Main.storyboard */,
 				8D24A2EB1CB6528100E81750 /* Assets.xcassets */,
@@ -185,7 +185,6 @@
 				8D24A2EF1CB6528100E81750 /* LaunchScreen.storyboard in Resources */,
 				8D24A2EC1CB6528100E81750 /* Assets.xcassets in Resources */,
 				8DCBEBFE1CCCB74500B74BA3 /* Media.xcassets in Resources */,
-				8DAEBFE51CD4E35C00F1AE69 /* setting.png in Resources */,
 				8D24A2E71CB6528100E81750 /* Main.storyboard in Resources */,
 				8DAEBFE31CD4DA2200F1AE69 /* camera_26.png in Resources */,
 				8D24A2F91CB6555D00E81750 /* monitor.png in Resources */,
@@ -247,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D272E291DFE812C0084E333 /* PurchaseManager.swift in Sources */,
 				8D24A2E41CB6528100E81750 /* ViewController.swift in Sources */,
 				8D24A2FF1CB6586300E81750 /* MonitorViewController.swift in Sources */,
 				8D24A2FE1CB6586300E81750 /* CameraViewController.swift in Sources */,
